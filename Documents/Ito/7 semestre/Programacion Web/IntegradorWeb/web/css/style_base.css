@@ -1,0 +1,123 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28/01/2021, 07:48:23 PM
+    Author     : ErikHernandez
+*/
+
+.cabecera {
+  background-color: #12192C;
+  z-index: 1;
+}
+
+.titulo {
+  color: #E8FFFF;
+  text-shadow: 2px 2px #41aea9;
+}
+
+.img_logo {
+  height: 5em;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, #213E3B, #E8FFFF, #213E3B);
+}
+
+.cuerpo {
+  width: 95%;
+}
+
+.pie {
+  background-color: #12192C;
+  color: #E8FFFF;
+}
+
+.hr_pie {
+  height: 0.5em;
+}
+
+.hr_2 {
+  width: 50%;
+}
+
+@media only screen and (max-width: 573px) {
+  .cuerpo {
+    margin: 6em 0 7em;
+  }
+
+  .pie {
+    height: 6.5em;
+  }
+
+  .hr_1 {
+    height: 0;
+  }
+}
+
+/* Query para tamaño xs */
+@media only screen and (min-width: 573px) {
+  .cuerpo {
+    margin: 6em 0 7em;
+  }
+
+  .cabecera {
+    height: 6em;
+  }
+
+  .pie {
+    height: 6.5em;
+  }
+
+  .hr_1 {
+    height: 1px;
+  }
+}
+
+/* Query para tamaño sm */
+@media only screen and (min-width: 768px) {
+  .cuerpo {
+    margin: 6em 0 6.5em;
+  }
+
+  .pie {
+    height: 5.5em;
+  }
+}
+
+/* Query para tamaño md */
+@media only screen and (min-width: 992px) {
+  .cuerpo {
+    margin: 6em 0 5.5em;
+  }
+
+  .pie {
+    height: 4.5em;
+  }
+}
+
+/* Query para tamaño lg */
+@media only screen and (min-width: 1200px) {
+  .cuerpo {
+    margin: 6em 0 5.5em;
+  }
+
+  .pie {
+    height: 4.5em;
+  }
+}
+
+/** Query para tamaño xl **/
+@media only screen and (min-width: 1226px) {
+  .cuerpo {
+    margin: 6em 0 4.5em;
+  }
+
+  .pie {
+    height: 3.5em;
+  }
+}
