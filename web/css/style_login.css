@@ -1,0 +1,29 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28/01/2021, 07:49:17 PM
+    Author     : ErikHernandez
+*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
+
+body{
+    width: 100%;
+    min-height: 100vh;
+    background: #12192C;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    color: #12192C;
+    text-shadow: 2px 2px #41aea9;
+}
+
+.img_logo {
+    height: 30%;
+    width: 80%;
+    
+}

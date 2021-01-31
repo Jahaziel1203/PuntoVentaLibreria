@@ -1,0 +1,49 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28/01/2021, 08:31:42 PM
+    Author     : ErikHernandez
+*/
+
+h2 {
+  color: #12192C;
+  text-shadow: 2px 2px #41AEA9;
+}
+
+.nomUsuario {
+    color: #E8FFFF;
+    text-align: right;
+}
+
+.tarjeta {
+    border: 1px solid #12192C;
+    background-color: #EDEDED;
+    color: #12192C;
+    border-radius: 3;
+    margin: 1em;
+}
+
+.tarjeta:hover {
+  background-color: #12192C;
+  color: #EDEDED;
+}
+
+.icon_dash {
+    font-size: 80px;
+}
+
+@media only screen and (max-width: 573px) {
+  .tarjeta {
+    width: 12em;
+  }
+}
+
+/* Query para tamaño xs */
+@media only screen and (min-width: 573px) {
+  .tarjeta {
+    width: 12em;
+  }
+}

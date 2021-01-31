@@ -1,0 +1,41 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 31/01/2021, 04:07:55 AM
+    Author     : ErikHernandez
+*/
+
+body {
+  background-color: #E8FFFF;
+  padding-left: 0;
+  padding-right: 0;
+  /*background-color: #EDEDED;*/
+}
+
+.card-body {
+    background-color: #E8FFFF;
+}
+
+.card {
+    border: none;
+}
+
+h2 {
+  color: #12192C;
+  text-shadow: 2px 2px #41AEA9;
+}
+
+.enviar {
+  vertical-align: top;
+}
+
+.enviar2 {
+  margin-left: 2em;
+}
+
+.espacio_boton {
+  padding-top: 2em;
+}
