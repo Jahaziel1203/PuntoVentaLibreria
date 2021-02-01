@@ -115,8 +115,12 @@
                                 <td>${pr.getEmail()}</td>
                                 <td>${pr.getCiudad()}</td>
                                 <td>
-                                    <a class="btn btn-warning" href="Controlador?menu=Proveedor&accion=Editar&id=${pr.getId_proveedor()}">Editar</a>
-                                    <a class="btn btn-danger" href="Controlador?menu=Proveedor&accion=Eliminar&id=${pr.getId_proveedor()}">Eliminar</a>
+                                    <a class="btn btn-warning" href="Controlador?menu=Proveedor&accion=Editar&id=${pr.getId_proveedor()}">
+                                        <i class='bx bxs-edit'></i>
+                                    </a>
+                                    <a class="btn btn-danger" href="Controlador?menu=Proveedor&accion=Eliminar&id=${pr.getId_proveedor()}">
+                                        <i class='bx bxs-trash'></i>
+                                    </a>
                                 </td>
                             </tr>
                         </c:forEach>

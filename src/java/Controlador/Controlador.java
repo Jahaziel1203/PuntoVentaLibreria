@@ -9,10 +9,12 @@ import Config.GenerarSerie;
 import Modelo.DAOEmpleado;
 import Modelo.DAOLibro;
 import Modelo.DAOProveedor;
+import Modelo.DAOReporte;
 import Modelo.DAOVenta;
 import Modelo.Empleado;
 import Modelo.Libro;
 import Modelo.Proveedor;
+import Modelo.Reporte;
 import Modelo.Venta;
 import java.io.IOException;
 import java.sql.Date;
@@ -39,6 +41,7 @@ public class Controlador extends HttpServlet {
     private DAOLibro daoLibr = new DAOLibro();
     private Venta vent = new Venta();
     private DAOVenta daoVen = new DAOVenta();
+    private DAOReporte daoRepo = new DAOReporte();
     private int idProv, idEmpl, idLibr;
     private boolean flagProv, flagEmpl, flagLibr;
 
@@ -223,7 +226,36 @@ public class Controlador extends HttpServlet {
             request.getRequestDispatcher("registrar_producto.jsp").forward(request, response);
         }
         if (menu.equals("reportes")) {
-            request.getRequestDispatcher("reportes.jsp").forward(request, response);
+            switch (accion) {
+                case "generarReporte":
+                    String fechaI = request.getParameter("fecha_i");
+                    String fechaF = request.getParameter("fecha_f");
+
+                    ArrayList<Reporte> reporteTotal = new ArrayList<Reporte>();
+                    reporteTotal = daoRepo.reporteTotal(fechaI, fechaF);
+                    float totalReporte = 0;
+                    for (Reporte r : reporteTotal) {
+                        if (r.getOperacion().equals("Compra")) {
+                            r.setTotal(-1 * r.getTotal());
+                        } 
+                        totalReporte += r.getTotal();
+                    }
+                    String totalBalance = ("Total: $" + totalReporte);
+                    request.setAttribute("fechaInicial", fechaI);
+                    request.setAttribute("fechaFinal", fechaF);
+                    request.setAttribute("totalReporte", totalBalance);
+                    request.setAttribute("reporte", reporteTotal);
+                    request.getRequestDispatcher("reportes.jsp").forward(request, response);
+                    break;
+                case "imprimirReporte":
+                    request.getRequestDispatcher("reportes.jsp").forward(request, response);
+                    break;
+                default:
+                    request.getRequestDispatcher("reportes.jsp").forward(request, response);
+                    break;
+            }
+
+            //request.getRequestDispatcher("reportes.jsp").forward(request, response);
         }
         if (menu.equals("ventas")) {
             switch (accion) {
@@ -279,7 +311,7 @@ public class Controlador extends HttpServlet {
                     vent.setNumSerie(numeroSerie);
                     vent.setMonto(totalPagar);
                     //daoVen.guardarVenta(vent);
-                    
+
                     /* Guardar detalles de la venta */
                     int idV = daoVen.maxIdVentas();
                     for (int x = 0; x < lista.size(); x++) {
@@ -288,7 +320,7 @@ public class Controlador extends HttpServlet {
                         vent.setId_producto(lista.get(x).getId_producto());
                         vent.setCantidad(lista.get(x).getCantidad());
                         vent.setPrecio_v(lista.get(x).getPrecio_v());
-                        
+
                         //daoVen.guardarDetalleVenta(vent);
                     }
                     break;

@@ -118,7 +118,7 @@
 
                         <!-- ITEM REPORTES -->
                         <li>
-                            <a href="Controlador?menu=reportes" class="nav__link"  target="myFrame">
+                            <a href="Controlador?menu=reportes&accion=default" class="nav__link"  target="myFrame">
                                 <i class='bx bxs-file-pdf nav__icon'></i>
                                 <span class="nav__text">Reportes</span>
                             </a>

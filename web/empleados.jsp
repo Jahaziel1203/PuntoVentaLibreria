@@ -173,6 +173,10 @@
             </div>
 
             <div class="col-12 col-sm-12 col-md-8 tabla">
+                <div class="col-12 mt-3">
+                        <h4 class="align-self-center text-center">Empleados Registrados</h4>
+                </div>
+                
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
