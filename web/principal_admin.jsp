@@ -161,8 +161,8 @@
         </div>
 
         <!-- ACA SE AGREGA LA PARTE DEL CONTENIDO -->
-        <div class="row cuerpo" style="height: 700px;">
-            <iframe style="width: 100%; border: none; padding-left: 0; padding-right: 0;" name="myFrame" src="dashboard_admin.jsp">
+        <div class="row cuerpo">
+            <iframe class="marco" name="myFrame" src="dashboard_admin.jsp">
             </iframe>
         </div>
 

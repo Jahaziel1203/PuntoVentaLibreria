@@ -239,6 +239,7 @@ public class Controlador extends HttpServlet {
                             totalPagar = totalPagar + lista.get(x).getSubtotal();
                         }
 
+                        request.setAttribute("nSerie", numeroSerie);
                         request.setAttribute("totalPagar", totalPagar);
                         request.setAttribute("listLibros", lista);
                     }
@@ -267,12 +268,29 @@ public class Controlador extends HttpServlet {
                     }
 
                     if (lista.size() > 0) {
+                        request.setAttribute("nSerie", numeroSerie);
                         request.setAttribute("totalPagar", totalPagar);
                         request.setAttribute("listLibros", lista);
                     }
                     break;
                 case "GenerarVenta":
+                    /* Guardar venta */
+                    vent.setId_empleado(1);
+                    vent.setNumSerie(numeroSerie);
+                    vent.setMonto(totalPagar);
+                    //daoVen.guardarVenta(vent);
                     
+                    /* Guardar detalles de la venta */
+                    int idV = daoVen.maxIdVentas();
+                    for (int x = 0; x < lista.size(); x++) {
+                        vent = new Venta();
+                        vent.setId_venta(idV);
+                        vent.setId_producto(lista.get(x).getId_producto());
+                        vent.setCantidad(lista.get(x).getCantidad());
+                        vent.setPrecio_v(lista.get(x).getPrecio_v());
+                        
+                        //daoVen.guardarDetalleVenta(vent);
+                    }
                     break;
                 default:
                     numeroSerie = daoVen.generarSerie();

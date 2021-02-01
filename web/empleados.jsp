@@ -198,8 +198,12 @@
                                 <td>${em.getCelular()}</td>
                                 <td>${em.getTipo_usuario()}</td>
                                 <td>
-                                    <a class="btn btn-warning" href="Controlador?menu=Empleado&accion=Editar&id=${em.getId_empleado()}">Editar</a>
-                                    <a class="btn btn-danger" href="Controlador?menu=Empleado&accion=Eliminar&id=${em.getId_empleado()}">Eliminar</a>
+                                    <a class="btn btn-warning" href="Controlador?menu=Empleado&accion=Editar&id=${em.getId_empleado()}">
+                                        <i class='bx bxs-edit' ></i>
+                                    </a>
+                                    <a class="btn btn-danger" href="Controlador?menu=Empleado&accion=Eliminar&id=${em.getId_empleado()}">
+                                        <i class='bx bx-trash'></i>
+                                    </a>
                                 </td>
                             </tr>
                         </c:forEach>

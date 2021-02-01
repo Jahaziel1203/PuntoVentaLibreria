@@ -32,7 +32,7 @@
         <div class="col-12">
             <h3 class="text-center">
                 <!-- TARJETA PROVEEDORES -->
-                <a href="#" class="btn tarjeta cambio">
+                <a href="Controlador?menu=Proveedor&accion=Listar" class="btn tarjeta cambio">
                     <i class='bx bxs-briefcase icon_dash'></i>
                     <div class="card-body cuerpo_tarjeta">
                         <h5 class="card-title">PROVEEDORES</h5>
@@ -40,7 +40,7 @@
                 </a>
 
                 <!-- TARJETA EMPLEADOS -->
-                <a href="#" class="btn tarjeta cambio">
+                <a href="Controlador?menu=Empleado&accion=Listar" class="btn tarjeta cambio">
                     <i class='bx bxs-group icon_dash'></i>
                     <div class="card-body cuerpo_tarjeta">
                         <h5 class="card-title">EMPLEADOS</h5>
@@ -56,7 +56,7 @@
                 </a>
 
                 <!-- TARJETA VENTAS -->
-                <a href="#" class="btn tarjeta cambio">
+                <a href="Controlador?menu=ventas&accion=default" class="btn tarjeta cambio">
                     <i class='bx bx-cart-alt icon_dash'></i>
                     <div class="card-body cuerpo_tarjeta">
                         <h5 class="card-title">VENTAS</h5>

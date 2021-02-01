@@ -30,6 +30,14 @@ hr {
 
 .cuerpo {
   width: 95%;
+  height: 700px;
+}
+
+.marco {
+    width: 100%; 
+    border: none; 
+    padding-left: 0; 
+    padding-right: 0;
 }
 
 .pie {
@@ -39,6 +47,7 @@ hr {
 
 .hr_pie {
   height: 0.5em;
+  height: 700px;
 }
 
 .hr_2 {

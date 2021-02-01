@@ -40,7 +40,7 @@
                 </a>
 
                 <!-- TARJETA VENTAS -->
-                <a href="#" class="btn tarjeta cambio">
+                <a href="Controlador?menu=ventas&accion=default" class="btn tarjeta cambio">
                     <i class='bx bx-cart-alt icon_dash'></i>
                     <div class="card-body cuerpo_tarjeta">
                         <h5 class="card-title">VENTAS</h5>

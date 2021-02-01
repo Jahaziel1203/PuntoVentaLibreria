@@ -44,7 +44,7 @@
                     <ul class="nav__list">
                         <!-- ITEM HOME -->
                         <li>
-                            <a href="Controlador?accion=dashboard_cajero" class="nav__link active" target="myFrame">
+                            <a href="Controlador?menu=dashboard_cajero" class="nav__link active" target="myFrame">
                                 <i class='bx bx-home-alt nav__icon'></i>
                                 <span class="nav__text">Home</span>
                             </a>
@@ -60,7 +60,7 @@
 
                         <!-- ITEM VENTAS -->
                         <li>
-                            <a href="Controlador?accion=ventas" class="nav__link" target="myFrame">
+                            <a href="Controlador?menu=ventas&accion=default" class="nav__link" target="myFrame">
                                 <i class='bx bx-cart-alt nav__icon'></i>
                                 <span class="nav__text">Venta</span>
                             </a>
@@ -107,8 +107,8 @@
         </div>
 
         <!-- ACA SE AGREGA LA PARTE DEL CONTENIDO -->
-        <div class="row cuerpo" style="height: 500px;">
-            <iframe style="width: 100%;" name="myFrame" src="dashboard_cajero.jsp">
+        <div class="row cuerpo">
+            <iframe class="marco" name="myFrame" src="dashboard_cajero.jsp">
             </iframe>
         </div>
 

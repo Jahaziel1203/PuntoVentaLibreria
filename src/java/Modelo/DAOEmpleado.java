@@ -76,8 +76,8 @@ public class DAOEmpleado {
                 empl.setTurno(rs.getString(7));
                 empl.setTipo_usuario(rs.getString(8));
                 empl.setCelular(rs.getLong(9));
-                empl.setUsuario(rs.getString(10));
-                empl.setPass(rs.getString(11));
+                empl.setPass(rs.getString(10));
+                empl.setUsuario(rs.getString(11));
                 listaEmpl.add(empl);
             }
             
@@ -147,8 +147,8 @@ public class DAOEmpleado {
                 empleado.setTurno(rs.getString(7));
                 empleado.setTipo_usuario(rs.getString(8));
                 empleado.setCelular(rs.getLong(9));
-                empleado.setUsuario(rs.getString(10));
-                empleado.setPass(rs.getString(11));
+                empleado.setPass(rs.getString(10));
+                empleado.setUsuario(rs.getString(11));
             }
             
         } catch (SQLException ex) {
