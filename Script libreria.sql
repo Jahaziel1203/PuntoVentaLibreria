@@ -77,6 +77,8 @@ create table Venta (
 	foreign key (id_empleado) references Empleado (id_empleado)
 );
 
+alter table libreria.venta add column numSerie varchar(10);
+
 create table Detalle_Venta (
 	id_venta int,
 	id_libro int,

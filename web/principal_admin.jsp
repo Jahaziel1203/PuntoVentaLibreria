@@ -94,7 +94,7 @@
 
                         <!-- ITEM VENTAS -->
                         <li>
-                            <a href="Controlador?menu=ventas" class="nav__link"  target="myFrame">
+                            <a href="Controlador?menu=ventas&accion=default" class="nav__link"  target="myFrame">
                                 <i class='bx bx-cart-alt nav__icon'></i>
                                 <span class="nav__text">Venta</span>
                             </a>

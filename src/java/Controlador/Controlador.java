@@ -5,14 +5,20 @@
  */
 package Controlador;
 
+import Config.GenerarSerie;
 import Modelo.DAOEmpleado;
+import Modelo.DAOLibro;
 import Modelo.DAOProveedor;
+import Modelo.DAOVenta;
 import Modelo.Empleado;
+import Modelo.Libro;
 import Modelo.Proveedor;
+import Modelo.Venta;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,12 +31,21 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Controlador extends HttpServlet {
 
-    Proveedor prov = new Proveedor();
-    DAOProveedor daoProv = new DAOProveedor();
-    Empleado empl = new Empleado();
-    DAOEmpleado daoEmpl = new DAOEmpleado();
-    int idProv, idEmpl;
-    boolean flagProv, flagEmpl;
+    private Proveedor prov = new Proveedor();
+    private DAOProveedor daoProv = new DAOProveedor();
+    private Empleado empl = new Empleado();
+    private DAOEmpleado daoEmpl = new DAOEmpleado();
+    private Libro libr = new Libro();
+    private DAOLibro daoLibr = new DAOLibro();
+    private Venta vent = new Venta();
+    private DAOVenta daoVen = new DAOVenta();
+    private int idProv, idEmpl, idLibr;
+    private boolean flagProv, flagEmpl, flagLibr;
+
+    private List<Venta> lista = new ArrayList<>();
+    private int item, id_Prod, cant;
+    private String titulo, numeroSerie;
+    private float precio, subtotal, totalPagar;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -72,39 +87,39 @@ public class Controlador extends HttpServlet {
                     break;
                 case "Agregar":
                     System.out.println(request.getParameter("txtFechaI") + "   " + request.getParameter("txtFechaN"));
-                    
+
                     String nombre = request.getParameter("txtNombreEm");
                     String apellido_paterno = request.getParameter("txtApPat");
                     String apellido_materno = request.getParameter("txtApMat");
-                    
+
                     SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
                     Date fecha_ingreso = null;
                     Date fecha_nacimiento = null;
                     try {
                         java.util.Date fecha_ingresoU = (java.util.Date) formato.parse(request.getParameter("txtFechaI"));
                         java.util.Date fecha_nacimientoU = (java.util.Date) formato.parse(request.getParameter("txtFechaN"));
-                        
+
                         fecha_ingreso = new java.sql.Date(fecha_ingresoU.getTime());
                         fecha_nacimiento = new java.sql.Date(fecha_nacimientoU.getTime());
-                        
+
                     } catch (ParseException ex) {
                         System.err.println(ex);
                     }
-                    
+
                     String turno = request.getParameter("txtTurno");
-                    
+
                     long numero = 0;
                     try {
                         numero = Long.parseLong(request.getParameter("txtTelEm"));
                     } catch (NumberFormatException e) {
                         System.err.println("Error en la conversion del telefono");
                     }
-                    
+
                     String tipo_usuario = request.getParameter("txtTipoUs");
                     String usuario = request.getParameter("txtUsuario");
                     String pass = request.getParameter("txtPassw");
                     String estado = "activo";
-                    
+
                     empl.setNombre(nombre);
                     empl.setApellido_paterno(apellido_paterno);
                     empl.setApellido_materno(apellido_materno);
@@ -116,7 +131,7 @@ public class Controlador extends HttpServlet {
                     empl.setUsuario(usuario);
                     empl.setPass(pass);
                     empl.setEstado(estado);
-                    
+
                     if (flagEmpl) { // Se edita
                         empl.setId_empleado(idEmpl);
                         daoEmpl.editar(empl);
@@ -146,7 +161,6 @@ public class Controlador extends HttpServlet {
                 default:
                     throw new AssertionError();
             }
-
             request.getRequestDispatcher("empleados.jsp").forward(request, response);
         }
         if (menu.equals("listar_productos")) {
@@ -212,6 +226,68 @@ public class Controlador extends HttpServlet {
             request.getRequestDispatcher("reportes.jsp").forward(request, response);
         }
         if (menu.equals("ventas")) {
+            switch (accion) {
+                case "Buscar":
+                    int idProd = Integer.parseInt(request.getParameter("codProducto"));
+                    libr = daoLibr.buscarLibro(idProd);
+                    request.setAttribute("producto", libr);
+
+                    totalPagar = 0;
+
+                    if (lista.size() > 0) {
+                        for (int x = 0; x < lista.size(); x++) {
+                            totalPagar = totalPagar + lista.get(x).getSubtotal();
+                        }
+
+                        request.setAttribute("totalPagar", totalPagar);
+                        request.setAttribute("listLibros", lista);
+                    }
+                    break;
+                case "Agregar":
+                    totalPagar = 0;
+                    item = item + 1;
+                    id_Prod = libr.getId_libro();
+                    titulo = libr.getTitulo();
+                    precio = libr.getPrecio_v();
+                    cant = Integer.parseInt(request.getParameter("cantidad"));
+                    subtotal = precio * cant;
+
+                    vent = new Venta();
+                    vent.setItem(item);
+                    vent.setId_producto(id_Prod);
+                    vent.setTitulo(titulo);
+                    vent.setPrecio_v(precio);
+                    vent.setCantidad(cant);
+                    vent.setSubtotal(subtotal);
+
+                    lista.add(vent);
+
+                    for (int x = 0; x < lista.size(); x++) {
+                        totalPagar = totalPagar + lista.get(x).getSubtotal();
+                    }
+
+                    if (lista.size() > 0) {
+                        request.setAttribute("totalPagar", totalPagar);
+                        request.setAttribute("listLibros", lista);
+                    }
+                    break;
+                case "GenerarVenta":
+                    
+                    break;
+                default:
+                    numeroSerie = daoVen.generarSerie();
+                    if (numeroSerie == null) {
+                        numeroSerie = "00000001";
+                        request.setAttribute("nSerie", numeroSerie);
+                    } else {
+                        int incrementar = Integer.parseInt(numeroSerie);
+                        GenerarSerie gs = new GenerarSerie();
+                        numeroSerie = gs.numeroSerie(incrementar);
+                        request.setAttribute("nSerie", numeroSerie);
+                    }
+                    request.getRequestDispatcher("ventas.jsp").forward(request, response);
+            }
+
             request.getRequestDispatcher("ventas.jsp").forward(request, response);
         }
     }

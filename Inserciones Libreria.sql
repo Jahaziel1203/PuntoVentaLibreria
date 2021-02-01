@@ -65,6 +65,8 @@ select * from detalle_venta;
 insert into venta (id_empleado) values (2);
 select * from venta;
 
+update libreria.venta set numSerie = '0000000001' where id_venta = 1;
+
 
 -- Inserciones en la tabla detalle_venta
 insert into detalle_venta (id_venta, id_libro, cantidad) values (1, 1, 1);
